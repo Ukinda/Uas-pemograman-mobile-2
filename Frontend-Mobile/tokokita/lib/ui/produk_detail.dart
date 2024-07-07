@@ -5,7 +5,7 @@ import 'package:tokokita/ui/produk_form.dart';
 class ProdukDetail extends StatefulWidget {
   Produk? produk;
 
-  ProdukDetail({super.key, this.produk});
+  ProdukDetail({Key? key, this.produk}) : super(key: key);
 
   @override
   _ProdukDetailState createState() => _ProdukDetailState();
@@ -27,11 +27,11 @@ class _ProdukDetailState extends State<ProdukDetail> {
             ),
             Text(
               "Nama : ${widget.produk!.namaProduk}",
-              style: const TextStyle(fontSize: 8.0),
+              style: const TextStyle(fontSize: 18.0),
             ),
             Text(
-              "Harga : R${widget.produk!.hargaProduk.toString()}",
-              style: const TextStyle(fontSize: 8.0),
+              "Harga : ${widget.produk!.hargaProduk.toString()}",
+              style: const TextStyle(fontSize: 18.0),
             ),
             _tombolHapusEdit()
           ],
@@ -69,7 +69,14 @@ class _ProdukDetailState extends State<ProdukDetail> {
 //tombol hapus
         OutlinedButton(
           child: const Text("Ya"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ProdukForm(
+                          produk: widget.produk!,
+                        )));
+          },
         ),
 //tombol batal
         OutlinedButton(
